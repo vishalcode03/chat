@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { LogOut, MessageSquare, Settings, User, Gamepad } from "lucide-react";
+// Replace GameController with Gamepad
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
@@ -22,11 +23,23 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-2">
+            {authUser && (
+              <Link
+                to={"/games"}
+                className={`
+                btn btn-sm gap-2 transition-colors
+                `}
+              >
+                <Gamepad className="w-4 h-4" />
+                {/* Replace GameController with Gamepad */}
+                <span className="hidden sm:inline">Games</span>
+              </Link>
+            )}
+
             <Link
               to={"/settings"}
               className={`
               btn btn-sm gap-2 transition-colors
-              
               `}
             >
               <Settings className="w-4 h-4" />
